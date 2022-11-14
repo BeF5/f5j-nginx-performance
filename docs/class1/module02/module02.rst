@@ -15,17 +15,21 @@
    :width: 500
 
 - ラボ環境は以下のような構成
+
   - Locust: 10.1.1.7
+
     - パフォーマンステストツール
     - コンテナで実行する
     - CLIやWebUIを用いて操作する
 
   - monitor: 10.1.1.8
+
     - Grafana , Prometheus を監視サーバとして実行する
     - コンテナで実行する
     - 各HostにNode Exporterを実行し、そこからステータスを取得する
 
   - Webサーバ: 10.1.1.4, 10.1.1.5, 10.1.1.6
+
     - WebサーバとWordPress、MariaDBをデプロイ、コンテンツを応答する
     - Webサーバとして、10.1.1.4 が NGINX Unit、 10.1.1.5 が NGINX Plus、 10.1.1.6 が Apache を利用する
 
@@ -266,6 +270,7 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
 
 
 - Grafana
+
   - `http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__
   - ログインが求められる場合には、 user:admin , password:admin でログインしてください
 
@@ -273,12 +278,14 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
      :width: 500
 
 - Prometheus
+
   - `http://10.1.1.8:9090/ <http://10.1.1.8:9090/>`__
 
   .. image:: ./media/prometheus-top.png
      :width: 500
 
 - node-exporter
+
   - 各ホストで実行しています。対象となるホストのIPアドレスを指定してください
   - `http://10.1.1.4:9100/ <http://10.1.1.4:9100/>`__
 
@@ -286,6 +293,7 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
      :width: 500
 
 - 各WebServer
+
   - 各WebサーバでWordpress(PHP)、静的HTMLを応答する構成となります。対象となるホストのIPアドレスを指定してください
   - Wordpress: `http://10.1.1.4/ <http://10.1.1.4/>`__ (対象ホスト 10.1.1.4 の例)
 
@@ -298,6 +306,7 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
      :width: 500
 
 - Locustサーバ Webページ 
+
   - このラボでは、LocustのWebUI、CLI双方でコマンドを実行します。テスト内容に応じて以下の内適切な内容を閲覧ください
   - Locust WebUI: `http://10.1.1.7:8089/ <http://10.1.1.7:8089/>`__
 
