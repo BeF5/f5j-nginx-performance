@@ -13,10 +13,11 @@ Ansible Playbookはこのラボで利用したGitHubレポジトリ上に管理�
 ----
 
 以下手順を参考に、Ansibleをインストールしてください
-https://f5j-nginx-ansible.readthedocs.io/en/latest/class1/module2/module2.html
+
+- https://f5j-nginx-ansible.readthedocs.io/en/latest/class1/module2/module2.html
 
 2. GitHubに記載の内容を参考に各種アプリケーションを実行してください
 ----
 
-https://github.com/BeF5/f5j-nginx-performance-lab
+- https://github.com/BeF5/f5j-nginx-performance-lab
 
