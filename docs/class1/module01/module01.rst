@@ -30,7 +30,7 @@ Windows Jump HostからCLIの操作を行う場合、以下タブからRDP Clien
 
 .. NOTE::
    | RDPのUser名、パスワードはDETAILSをクリックし、GeneralのタブのCredentialsの項目を参照ください
-   | ``user`` でログインしてください 
+   | ``Administrator`` でログインしてください 
 
    - .. image:: ./media/udf_jumpbox_loginuser.png
        :width: 200
@@ -38,14 +38,11 @@ Windows Jump HostからCLIの操作を行う場合、以下タブからRDP Clien
    - .. image:: ./media/udf_jumpbox_loginuser2.png
        :width: 200
    
-Windows Jump Hostへログインいただくと、SSH
-Clientのショートカットがありますので、そちらをダブルクリックし
-``ubuntu01`` へ接続ください
+Windows Jump Hostへログインいただくと、SSH Clientのショートカットがありますので、
+そちらをダブルクリックし ``ubuntu04`` へ接続ください
 
-   - .. image:: ./media/putty_icon.jpg
+   - .. image:: ./media/putty_icon.png
       :width: 50
 
-   - .. image:: ./media/putty_menu.jpg
+   - .. image:: ./media/putty_menu.png
       :width: 200
-
-
