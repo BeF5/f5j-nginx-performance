@@ -1,8 +1,8 @@
 ラボ環境の確認
 ####
 
-本ラボ環境は予めセットアップが完了しています。
-セットアップ手順をご覧になりたい方は、 `Tips1. 各種アプリケーションのデプロイ <>`__ を参照してください
+| 本ラボ環境は予めセットアップが完了しています。
+| セットアップ手順をご覧になりたい方は、 `Tips1. 各種アプリケーションのデプロイ <https://f5j-nginx-performance.readthedocs.io/en/latest/class1/module09/module09.html#tips1>`__ を参照してください
 
 ラボ環境の各種構成について示します。動作を優先して確認されたい方はこのステップを飛ばして頂いて問題ありません。
 
@@ -145,8 +145,8 @@ NGINX Unit と Unit PHP のパッケージをインストールします。
 
 実際にホスト上のPATHを確認しファイルが配置されていることを確認してください
 
-NGINX Unitは、NGINX Unitをデプロイしたホスト上のSocketに対しリクエストを実行することで設定を行います
-環境のセットアップは Ansible URI module を利用します。Playbookの内容は `setup-nunit.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/nunit/setup-nunit.yaml>`__ を参照してください
+| NGINX Unitは、NGINX Unitをデプロイしたホスト上のSocketに対しリクエストを実行することで設定を行います
+| 環境のセットアップは Ansible URI module を利用します。Playbookの内容は `setup-nunit.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/nunit/setup-nunit.yaml>`__ を参照してください
 
 NGINX Unit に対し、HTTPSで利用する 証明書・鍵 をアップロードする参考手順を以下に示します
 
@@ -174,15 +174,15 @@ NGINX Unit に対し、上記設定ファイル を反映する方法を示し�
 Wordpress + MariaDB
 ----
 
-MariaDB及び各種必要となるファイルは `install-mariadb.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/common/install-mariadb.yaml>`__ に記載の通り設定します
-Wordpressは `install-wordpress.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/nunit/install-wordpress.yaml>`__ に記載の通り設定します
-Wordpressを実行するユーザなど各Webサーバごとに異なりますが、基本的な設定内容は同様です。
+| MariaDB及び各種必要となるファイルは `install-mariadb.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/common/install-mariadb.yaml>`__ に記載の通り設定します
+| Wordpressは `install-wordpress.yaml <https://github.com/BeF5/f5j-nginx-performance-lab/blob/master/ansible/web-servers/nunit/install-wordpress.yaml>`__ に記載の通り設定します
+| Wordpressを実行するユーザなど各Webサーバごとに異なりますが、基本的な設定内容は同様です。
 
 3. NGINX Plus + PHP 
 ====
 
-NGINX Plus の場合、Webサーバとして NGINX Plusが動作します。
-NGINX Plus はPHPを実行できないため、PHP-fpm を動作させ、Wordpressを実行します。NGINX Plus は Wordpress宛の通信を受け取ると、PHP-fpm が待ち受けるSocketに対し通信を転送し、その後PHP-fpmからの応答を返します。
+| NGINX Plus の場合、Webサーバとして NGINX Plusが動作します。
+| NGINX Plus はPHPを実行できないため、PHP-fpm を動作させ、Wordpressを実行します。NGINX Plus は Wordpress宛の通信を受け取ると、PHP-fpm が待ち受けるSocketに対し通信を転送し、その後PHP-fpmからの応答を返します。
 
 .. code-block:: bash
   :caption: NGINX Unit の設定ファイル
@@ -243,13 +243,13 @@ NGINX Plus はPHPを実行できないため、PHP-fpm を動作させ、Wordpre
 - 31行目に示す location で、 ``.php`` 宛の通信を PHP-fpm に転送するよう ``fastcgi_pass`` で ``php(upstream)`` を指定しています。その他必要な設定、パラメータを指定します
 - 43行目で、静的HTMLファイルを対象とした通信を受け付け、応答を返します
 
-Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wordpress + MariaDB) <>`__ と同様です
+Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wordpress + MariaDB) <https://f5j-nginx-performance.readthedocs.io/en/latest/class1/module02/module02.html#wordpress-mariadb>`__ と同様です
 
 4. Apache + PHP 
 ====
 
-Apacheでは必要となるパッケージをインストールし、指定のフォルダにWordpress、静的HTMLファイルを配置しています。
-Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wordpress + MariaDB) <>`__ と同様です
+| Apacheでは必要となるパッケージをインストールし、指定のフォルダにWordpress、静的HTMLファイルを配置しています。
+| Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wordpress + MariaDB) <https://f5j-nginx-performance.readthedocs.io/en/latest/class1/module02/module02.html#wordpress-mariadb>`__ と同様です
 
 5. Locust / Grafana + Prometheus / node-exporter
 ====
