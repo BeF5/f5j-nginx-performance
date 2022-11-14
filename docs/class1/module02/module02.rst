@@ -135,12 +135,13 @@ NGINX Unit と Unit PHP のパッケージをインストールします。
 
 改めて通信がどの様に処理されるか以下の表にまとめます
 
-======= ================ ========================
-URL     実行される内容   参照するホスト上のパス
-------- ---------------- ------------------------
-/html/  静的HTMLの応答   /var/www/html/
-\*php等 WordPressの応答  /var/www/wordpress/
-======= ================ ========================
++-------+----------------+------------------------+
+|URL    |実行される内容  |参照するホスト上のパス  |
++=======+================+========================+
+|/html/ |静的HTMLの応答  |/var/www/html/          |
++-------+----------------+------------------------+
+|\*php等|WordPressの応答 |/var/www/wordpress/     |
++-------+----------------+------------------------+
 
 実際にホスト上のPATHを確認しファイルが配置されていることを確認してください
 
@@ -268,42 +269,43 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
   - `http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__
   - ログインが求められる場合には、 user:admin , password:admin でログインしてください
 
-.. image:: ./media/grafana-top.png
-   :width: 500
+  .. image:: ./media/grafana-top.png
+     :width: 500
 
 - Prometheus
   - `http://10.1.1.8:9090/ <http://10.1.1.8:9090/>`__
 
-.. image:: ./media/prometheus-top.png
-   :width: 500
+  .. image:: ./media/prometheus-top.png
+     :width: 500
 
 - node-exporter
   - 各ホストで実行しています。対象となるホストのIPアドレスを指定してください
   - `http://10.1.1.4:9100/ <http://10.1.1.4:9100/>`__
 
-.. image:: ./media/nodeexporter-top.png
-   :width: 500
+  .. image:: ./media/nodeexporter-top.png
+     :width: 500
 
 - 各WebServer
   - 各WebサーバでWordpress(PHP)、静的HTMLを応答する構成となります。対象となるホストのIPアドレスを指定してください
   - Wordpress: `http://10.1.1.4/ <http://10.1.1.4/>`__ (対象ホスト 10.1.1.4 の例)
 
-.. image:: ./media/web-wp-top.png
-   :width: 500
+  .. image:: ./media/web-wp-top.png
+     :width: 500
 
   - 静的HTML: `http://10.1.1.4/html/ <http://10.1.1.4/html/>`__ (対象ホスト 10.1.1.4 の例)
 
-.. image:: ./media/web-html-top.png
-   :width: 500
+  .. image:: ./media/web-html-top.png
+     :width: 500
 
 - Locustサーバ Webページ 
   - このラボでは、LocustのWebUI、CLI双方でコマンドを実行します。テスト内容に応じて以下の内適切な内容を閲覧ください
   - Locust WebUI: `http://10.1.1.7:8089/ <http://10.1.1.7:8089/>`__
 
-.. image:: ./media/locust-webui-top.png
-   :width: 500
+  .. image:: ./media/locust-webui-top.png
+     :width: 500
 
   - CLIで実行したレポートを確認するWebページ: `http://10.1.1.7/ <http://10.1.1.7/>`__
 
-.. image:: ./media/locust-cliresult-top.png
-   :width: 500
+  .. image:: ./media/locust-cliresult-top.png
+     :width: 500
+  
