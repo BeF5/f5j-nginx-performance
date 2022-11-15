@@ -28,7 +28,7 @@
 | 接続手順の詳細は `WindowsホストへのRDP接続 <https://f5j-nginx-performance.readthedocs.io/en/latest/class1/module01/module01.html#windows-jump-hostrdp>`__ を参照してください
 
 Grafanaへの接続
----
+----
 
 | 踏み台ホストよりGrafanaを開いてください。`http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__
 | ログインが求められる場合には、 user:admin , password:admin でログインしてください
@@ -68,9 +68,8 @@ Locustで参照する config / senario のサンプルを以下に示します
 以下がConfigファイルのサンプルです。その他詳細なパラメータは `Locust Configuration <https://docs.locust.io/en/stable/configuration.html>`__ を参照ください。
 
 .. code-block:: bash
-  :caption: Config ファイルサンプル (http_10-1-1-4_html.conf)
+  :caption: Config ファイルサンプル(http_10-1-1-4_html.conf)
   :linenos:
-  :emphasize-lines:
 
   headless = true
   host = http://10.1.1.4
@@ -91,7 +90,6 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: bash
   :caption: Senario ファイルサンプル (html.py)
   :linenos:
-  :emphasize-lines:
 
   import time
   from locust import HttpUser, task, between
@@ -107,11 +105,9 @@ Locustで参照する config / senario のサンプルを以下に示します
 - 7行目、 ``@task`` という形でデコレータの記述があり、この内容がシミュレートされるユーザによって実行されます。このサンプルでは記述しておりませんが、複数の task を指定した割合で実行するなどが可能です
 - 9行目、 このシナリオでは ``/html/index.html`` に対して ``GET`` を送付する動作となります
 
-1. パフォーマンステストの実施
-====
 
 1. HTTP - 静的HTML
-----
+====
 
 以下テストを実施します。
 
@@ -123,7 +119,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 
 
 パフォーマンステストの実施
-~~~~
+----
 
 作業用ホストで以下コマンドを実行し、トラフィックを発生させます
 
@@ -135,7 +131,6 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: bash
   :caption: 実行結果サンプル
   :linenos:
-  :emphasize-lines:
 
   PLAY [all] *********************************************************************
   
@@ -150,7 +145,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 
 
 結果の確認
-~~~~
+----
 
 Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
 
@@ -176,7 +171,7 @@ Locustサーバ Webページ を確認します
 新たなWindowに結果が表示されます。Request / Response の情報が確認できます。また、Requestの ``#Fails`` からエラーなく通信の処理ができていることが確認できます
 
 2. HTTPS - 静的HTML
-----
+====
 
 以下テストを実施します。
 
@@ -187,7 +182,7 @@ Locustサーバ Webページ を確認します
 +---+---------+--------+------------------+----------------------+-----------------+
 
 パフォーマンステストの実施
-~~~~
+----
 
 作業用ホストで以下コマンドを実行し、トラフィックを発生させます。コマンドの出力結果は ``HTTP-静的HTML`` と同様のため省略します。
 
@@ -198,7 +193,7 @@ Locustサーバ Webページ を確認します
 
 
 結果の確認
-~~~~
+----
 
 Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
 
@@ -219,7 +214,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 
 
 3. HTTP - Wordpress(PHP)
-----
+====
 
 
 以下テストを実施します。
@@ -244,7 +239,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
   ansible-playbook -i inventory/hosts -l locust load-generate/load-http-wp-allservers.yaml
 
 結果の確認
-~~~~
+----
 
 Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
 

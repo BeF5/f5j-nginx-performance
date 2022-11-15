@@ -54,7 +54,6 @@ NGINX Unit と Unit PHP のパッケージをインストールします。
 .. code-block:: bash
   :caption: NGINX Unit をInstallする Ansible Playbook
   :linenos:
-  :emphasize-lines:
 
   - name: Install NGINX Unit
     include_role:
@@ -165,9 +164,8 @@ NGINX Unit と Unit PHP のパッケージをインストールします。
 NGINX Unit に対し、HTTPSで利用する 証明書・鍵 をアップロードする参考手順を以下に示します
 
 .. code-block:: bash
-  :caption: NGINX Unit の設定ファイル
+  :caption: NGINX Unitへ証明書・鍵を登録する方法
   :linenos:
-  :emphasize-lines:
 
   # 証明書、Root証明書、秘密鍵を一つのファイルにまとめます
   cat cert.pem ca.pem key.pem > www.example.com.rsa2k.pem
@@ -176,12 +174,11 @@ NGINX Unit に対し、HTTPSで利用する 証明書・鍵 をアップロー�
   curl -X PUT --data-binary @www.example.com.rsa2k.pem --unix-socket /var/run/control.unit.sock http://localhost/certificates/bundle
 
 
-NGINX Unit に対し、上記設定ファイル を反映する方法を示します
+NGINX Unit に対し、上記設定ファイル を反映する方法を示します。wordpress.json が上記で紹介した設定ファイルとなります。
 
 .. code-block:: bash
-  :caption: NGINX Unit の設定ファイル
+  :caption: NGINX Unitへ設定を反映する方法
   :linenos:
-  :emphasize-lines:
 
   curl -X PUT --data-binary @wordpress.json --unix-socket /var/run/control.unit.sock http://localhost/config/
 
