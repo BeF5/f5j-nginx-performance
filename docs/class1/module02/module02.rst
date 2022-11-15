@@ -49,7 +49,7 @@
 NGINX Unit
 ----
 
-NGINX Unit と Unit PHP のパッケージをインストールします。
+NGINX Unit と Unit PHP のパッケージをインストールします。サンプルのセットアップ手順で利用しているAnsible Playbookは以下です。
 
 .. code-block:: bash
   :caption: NGINX Unit をInstallする Ansible Playbook
@@ -64,6 +64,9 @@ NGINX Unit と Unit PHP のパッケージをインストールします。
       nginx_unit_modules: 
         - unit-php 
 
+NGINX Unitと、このラボでPHPを利用するため unit-php をインストールします。
+
+設定ファイルは以下の内容です。
 外部からのリクエストに対し、NGINX Unit が PATHに応じて、静的HTMLファイルの応答と、WordPressのPHPを実行する構成とします。
 
 .. code-block:: bash
@@ -320,7 +323,8 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
   .. image:: ./media/locust-webui-top.png
      :width: 500
 
-  - CLIで実行したレポートを確認するWebページ: `http://10.1.1.7/ <http://10.1.1.7/>`__
+  - | CLIで実行したレポートを確認するWebページ: `http://10.1.1.7/ <http://10.1.1.7/>`__
+    | 画面左側のメニュー ``Locust WebUI`` をクリックすることで、Locust WebUI を開くことが可能です。
 
   .. image:: ./media/locust-cliresult-top.png
      :width: 500
