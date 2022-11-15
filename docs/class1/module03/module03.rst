@@ -70,7 +70,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: bash
   :caption: Config ファイルサンプル (http_10-1-1-4_html.conf)
   :linenos:
-  :emphasize-lines: 
+  :emphasize-lines:
 
   headless = true
   host = http://10.1.1.4
@@ -91,7 +91,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: bash
   :caption: Senario ファイルサンプル (html.py)
   :linenos:
-  :emphasize-lines: 
+  :emphasize-lines:
 
   import time
   from locust import HttpUser, task, between
@@ -135,7 +135,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: bash
   :caption: 実行結果サンプル
   :linenos:
-  :emphasize-lines: 
+  :emphasize-lines:
 
   PLAY [all] *********************************************************************
   
