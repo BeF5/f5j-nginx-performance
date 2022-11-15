@@ -14,24 +14,34 @@
 .. image:: ./media/lab-diagram.png
    :width: 500
 
-- ラボ環境は以下のような構成
+- Locust: 10.1.1.7
 
-  - Locust: 10.1.1.7
+  - パフォーマンステストツール
+  - コンテナで実行する
+  - CLIやWebUIを用いて操作する
 
-    - パフォーマンステストツール
-    - コンテナで実行する
-    - CLIやWebUIを用いて操作する
+- monitor: 10.1.1.8
 
-  - monitor: 10.1.1.8
+  - Grafana , Prometheus を監視サーバとして実行する
+  - コンテナで実行する
+  - 各HostにNode Exporterを実行し、そこからステータスを取得する
 
-    - Grafana , Prometheus を監視サーバとして実行する
-    - コンテナで実行する
-    - 各HostにNode Exporterを実行し、そこからステータスを取得する
+- Webサーバ: 10.1.1.4, 10.1.1.5, 10.1.1.6
 
-  - Webサーバ: 10.1.1.4, 10.1.1.5, 10.1.1.6
+  - WebサーバとWordPress、MariaDBをデプロイ、コンテンツを応答する
+  - Webサーバとして、10.1.1.4 が NGINX Unit、 10.1.1.5 が NGINX Plus、 10.1.1.6 が Apache を利用する
 
-    - WebサーバとWordPress、MariaDBをデプロイ、コンテンツを応答する
-    - Webサーバとして、10.1.1.4 が NGINX Unit、 10.1.1.5 が NGINX Plus、 10.1.1.6 が Apache を利用する
+- スペック
+
+  +---------+------------+-----+-------+
+  |Host     |OS          |vCPU |Memory |
+  +=========+============+=====+=======+
+  |locust   |Ubuntu20.04 |8    |16GB   |
+  +---------+------------+-----+-------+
+  |monitor  |Ubuntu20.04 |4    |8GB    |
+  +---------+------------+-----+-------+
+  |Webサーバ|Ubuntu20.04 |2    |2GB    |
+  +---------+------------+-----+-------+
 
 2. NGINX Unit + PHP 
 ====
@@ -189,7 +199,7 @@ Wordpress + MariaDB
 | NGINX Plus はPHPを実行できないため、PHP-fpm を動作させ、Wordpressを実行します。NGINX Plus は Wordpress宛の通信を受け取ると、PHP-fpm が待ち受けるSocketに対し通信を転送し、その後PHP-fpmからの応答を返します。
 
 .. code-block:: bash
-  :caption: NGINX Unit の設定ファイル
+  :caption: NGINX Plus の設定ファイル(defaultc.conf)
   :linenos:
   :emphasize-lines: 1-3, 7-11, 31-36, 43-46
 
