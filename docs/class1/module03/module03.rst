@@ -14,8 +14,7 @@
 +---+---------+--------+------------------+----------------------+-----------------+
 |3  |HTTP     |/       |Wordpress(PHP)    |50                    |5                |
 +---+---------+--------+------------------+----------------------+-----------------+
-|4  |HTTPS    |/       |Wordpress(PHP)    |50                    |5                |
-+---+---------+--------+------------------+----------------------+-----------------+
+
 
 0. パフォーマンステスト準備
 ====
@@ -29,7 +28,7 @@
 | 接続手順の詳細は `WindowsホストへのRDP接続 <https://f5j-nginx-performance.readthedocs.io/en/latest/class1/module01/module01.html#windows-jump-hostrdp>`__ を参照してください
 
 Grafanaへの接続
----| -| 
+---
 
 | 踏み台ホストよりGrafanaを開いてください。`http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__
 | ログインが求められる場合には、 user:admin , password:admin でログインしてください
@@ -80,6 +79,7 @@ Locustで参照する config / senario のサンプルを以下に示します
   run-time = 180s
   loglevel = DEBUG
 
+
 - 1行目、headless true を指定する事により、Web GUIなしでLocustを起動します
 - 2行目、host がトラフィックを送付する宛先です
 - 3行目、最終的にシュミレートする同時接続ユーザ数です
@@ -103,29 +103,160 @@ Locustで参照する config / senario のサンプルを以下に示します
       def hello_world(self):
           self.client.get("/html/index.html")
 
+
 - 7行目、 ``@task`` という形でデコレータの記述があり、この内容がシミュレートされるユーザによって実行されます。このサンプルでは記述しておりませんが、複数の task を指定した割合で実行するなどが可能です
 - 9行目、 このシナリオでは ``/html/index.html`` に対して ``GET`` を送付する動作となります
 
 1. パフォーマンステストの実施
 ====
 
-1. 
+1. HTTP - 静的HTML
 ----
+
+以下テストを実施します。
+
++---+---------+--------+------------------+----------------------+-----------------+
+|#  |Protocol |Path    |応答するコンテンツ|最終同時接続ユーザ数  |秒間追加ユーザ数 |
++===+=========+========+==================+======================+=================+
+|1  |HTTP     |/html/  |静的HTML          |500                   |10               |
++---+---------+--------+------------------+----------------------+-----------------+
+
 
 パフォーマンステストの実施
 ~~~~
 
+作業用ホストで以下コマンドを実行し、トラフィックを発生させます
+
+.. code-block:: cmdin
+
+  # cd ~/f5j-nginx-performance-lab/ansible
+  ansible-playbook -i inventory/hosts -l locust load-generate/load-http-html-allservers.yaml
+
+.. code-block:: bash
+  :caption: 実行結果サンプル
+  :linenos:
+  :emphasize-lines: 
+
+  PLAY [all] *********************************************************************
+  
+  TASK [Gathering Facts] *********************************************************
+  ok: [10.1.1.7]
+  
+  TASK [Locust http to html] *****************************************************
+  changed: [10.1.1.7]
+  
+  PLAY RECAP *********************************************************************
+  10.1.1.7                   : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
 結果の確認
 ~~~~
 
-考察
+Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
 
+  .. image:: ./media/grafana-http-html.png
+     :width: 500
 
-2. 
+- 上から ``Locust`` 、 ``NGINX Unit`` 、 ``NGINX Plus`` 、 ``Apache`` の結果となります
+- CPU、Memoryグラフの最大値は記載の通りです
+- NGINX Unit、NGINX Plusでは、それぞれの記載のCPU利用率となります。メモリは通信処理時に大きな変化はありませんでした
+- Apacheは、 17.5% の使用率となり、メモリは通信処理時に 約100MB 増加し、435MB となりました
+
+Locustサーバ Webページ を確認します
+
+  .. image:: ./media/locust-web-http-html.png
+     :width: 500
+
+画面を更新すると、以下の表にLocustの実行結果が表示されます。各行が各ホストに対する実行結果を示しています。
+詳細なレポートを確認する場合、対象の行をクリックしてください。以下にサンプルを示します。
+
+  .. image:: ./media/locust-web-http-html-report.png
+     :width: 500
+
+新たなWindowに結果が表示されます。Request / Response の情報が確認できます。また、Requestの ``#Fails`` からエラーなく通信の処理ができていることが確認できます
+
+2. HTTPS - 静的HTML
 ----
 
-3. 
+以下テストを実施します。
+
++---+---------+--------+------------------+----------------------+-----------------+
+|#  |Protocol |Path    |応答するコンテンツ|最終同時接続ユーザ数  |秒間追加ユーザ数 |
++===+=========+========+==================+======================+=================+
+|2  |HTTPS    |/html/  |静的HTML          |500                   |10               |
++---+---------+--------+------------------+----------------------+-----------------+
+
+パフォーマンステストの実施
+~~~~
+
+作業用ホストで以下コマンドを実行し、トラフィックを発生させます。コマンドの出力結果は ``HTTP-静的HTML`` と同様のため省略します。
+
+.. code-block:: cmdin
+
+  # cd ~/f5j-nginx-performance-lab/ansible
+  ansible-playbook -i inventory/hosts -l locust load-generate/load-https-html-allservers.yaml
+
+
+結果の確認
+~~~~
+
+Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
+
+  .. image:: ./media/grafana-https-html.png
+     :width: 500
+
+
+- 上から ``Locust`` 、 ``NGINX Unit`` 、 ``NGINX Plus`` 、 ``Apache`` の結果となります
+- CPU、Memoryグラフの最大値は記載の通りです
+- NGINX Unit、NGINX Plusでは、それぞれの記載のCPU利用率となります。メモリは通信処理時に大きな変化はありませんでした
+- Apacheは、 17.5% の使用率となり、メモリは通信処理時に 約100MB 増加し、435MB となりました
+
+
+Locustサーバ Webページ を更新し結果が表示されることを確認します。詳細なレポートを確認する場合、対象の行をクリックしてください。
+
+  .. image:: ./media/locust-web-https-html-report.png
+     :width: 500
+
+
+3. HTTP - Wordpress(PHP)
 ----
 
-4.
-----
+
+以下テストを実施します。
+
++---+---------+--------+------------------+----------------------+-----------------+
+|#  |Protocol |Path    |応答するコンテンツ|最終同時接続ユーザ数  |秒間追加ユーザ数 |
++===+=========+========+==================+======================+=================+
+|3  |HTTP     |/       |Wordpress(PHP)    |50                    |5                |
++---+---------+--------+------------------+----------------------+-----------------+
+
+このテストではWebサーバとしての機能だけでなく、PHPの実行、SQLサーバの処理があるため、一つのリクエストに対し様々な機能が動作しています。
+その動作がどの様に変化するか確認してください。
+
+パフォーマンステストの実施
+~~~~
+
+作業用ホストで以下コマンドを実行し、トラフィックを発生させます。コマンドの出力結果は ``HTTP-静的HTML`` と同様のため省略します。
+
+.. code-block:: cmdin
+
+  # cd ~/f5j-nginx-performance-lab/ansible
+  ansible-playbook -i inventory/hosts -l locust load-generate/load-http-wp-allservers.yaml
+
+結果の確認
+~~~~
+
+Grafanaのダッシュボードを確認してください。サンプルの結果を以下に示します。
+
+  .. image:: ./media/grafana-http-wp.png
+     :width: 500
+
+- 上から ``Locust`` 、 ``NGINX Unit`` 、 ``NGINX Plus`` 、 ``Apache`` の結果となります
+- CPU、Memoryグラフの最大値は記載の通りです
+- NGINX Plus、Apache は CPU利用率が 100% となっています。NGINX Unitでは、NGINX UnitがPHPを実行しています。CPU利用率は 51% となその他Webサーバと比較して利用率が低くなっております
+- NGINX Unit、NGINX Plusでは、メモリは大きな増加はありません。Apacheは 約364MB 増加し、765MBとなりました
+
+Locustサーバ Webページ を更新し結果が表示されることを確認します。詳細なレポートを確認する場合、対象の行をクリックしてください。
+
+  .. image:: ./media/locust-web-http-wp-report.png
+     :width: 500
