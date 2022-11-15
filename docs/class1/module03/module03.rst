@@ -30,7 +30,7 @@
 Grafanaへの接続
 ----
 
-| 踏み台ホストよりGrafanaを開いてください。`http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__
+| 踏み台ホストよりGrafanaを開いてください。URLは `http://10.1.1.8:3000/ <http://10.1.1.8:3000/>`__ です。
 | ログインが求められる場合には、 user:admin , password:admin でログインしてください
 
   .. image:: ../module02/media/grafana-top.png
@@ -55,7 +55,7 @@ Locustへの接続・実行
 ----
 
 | Locustサーバ Webページ へ接続してください。
-| 踏み台ホストよりCLIで実行したレポートを確認するWebページを開いてください。 `http://10.1.1.7/ <http://10.1.1.7/>`__
+| 踏み台ホストよりCLIで実行したレポートを確認するWebページを開いてください。URLは `http://10.1.1.7/ <http://10.1.1.7/>`__ です。
 
   .. image:: ../module02/media/locust-cliresult-top.png
      :width: 500
