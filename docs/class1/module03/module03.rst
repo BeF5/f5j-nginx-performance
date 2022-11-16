@@ -251,6 +251,13 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
   # cd ~/f5j-nginx-performance-lab/ansible
   ansible-playbook -i inventory/hosts -l locust load-generate/load-http-wp-allservers.yaml
 
+.. NOTE::
+  稀にNGINX UnitがPHPの応答を返さない状態になる場合があります。その際には、 ``ubuntu01`` に接続し、以下コマンドを実行してください。テスト実施時間の 120秒 経過を待ち、再度テストを行ってください
+
+  .. code-block:: cmdin
+
+    sudo service unit restart
+
 結果の確認
 ----
 
