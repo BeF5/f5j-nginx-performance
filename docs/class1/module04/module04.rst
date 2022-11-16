@@ -49,7 +49,7 @@ Locust Web UIよりパフォーマンステストを行います。
 画面の項目に以下の内容を入力し、 ``Start swarming`` をクリックしてください。
 
 .. NOTE::
-  WebGUIを実行するLocustはWorker Processを4つ起動しています。CLIコマンドは、Worker Processは一つです。
+  WebGUIを実行するLocustはWorker Processを8つ起動しています。CLIコマンドは、Worker Processは一つです。
   この違いのため、最大ユーザ数などの指定が異なる値となっています
 
 +----------------+-----------+----------------+-----------+
