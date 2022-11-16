@@ -254,7 +254,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 .. NOTE::
   稀にNGINX UnitがPHPの応答を返さない状態になる場合があります。その際には、 ``ubuntu01`` に接続し、以下コマンドを実行してください。テスト実施時間の 120秒 経過を待ち、再度テストを行ってください
 
-  .. code-block:: cmdin
+  .. code-block::
 
     sudo service unit restart
 
@@ -360,12 +360,12 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
   :linenos:
 
   <IfModule mpm_worker_module>
-          StartServers                     2
+          StartServers             2
           MinSpareThreads          25
           MaxSpareThreads          75
-          ThreadLimit                      64
+          ThreadLimit              64
           ThreadsPerChild          25
-          MaxRequestWorkers         150
+          MaxRequestWorkers        150
           MaxConnectionsPerChild   0
   </IfModule>
 
@@ -375,4 +375,4 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
   :caption: 同時接続数超過によるエラーログ (error.log)
   :linenos:
 
-[Wed Nov 16 07:29:52.251435 2022] [mpm_prefork:error] [pid 817] AH00161: server reached MaxRequestWorkers setting, consider raising the MaxRequestWorkers setting
+  [Wed Nov 16 07:29:52.251435 2022] [mpm_prefork:error] [pid 817] AH00161: server reached MaxRequestWorkers setting, consider raising the MaxRequestWorkers setting
