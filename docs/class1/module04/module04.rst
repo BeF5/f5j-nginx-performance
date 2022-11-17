@@ -217,10 +217,10 @@ Worker Connectionに ``1024`` と指定されており、それらで処理で�
 - ``worker_connections`` の値に合わせて `worker_rlimit_nofile <https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile>`__ を増やしています。これはWorker Processが利用するファイルディスクリプタの数です。今回はWebサーバとして動作させるため、値を同じにしています。Proxyとして利用する場合など、クライアントサイド、サーバサイド双方でコネクション確立(ファイルディスクリプタの利用)があるため２倍の値が目安となります
 - `accept_mutex <https://nginx.org/en/docs/ngx_core_module.html#accept_mutex>`__ を ``off`` とし、新規コネクションを受け付けた際のWorker Processの動作を変更します
 - `multi_accept <https://nginx.org/en/docs/ngx_core_module.html#multi_accept>`__ を ``off`` とします。これはデフォルトの値を明示した形で挙動の変更はありません。この設定により、Worker Processが新規コネクションを１つずつ受け取るか、一度にすべて受け取るかの挙動を変更します
-- `keepalive_requests <https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests>`__ により、クライアントの単一のTCPコネクションで処理するリクエストの数を指定します。デフォルト値の 1000 から指定あの値に変更しています
+- `keepalive_requests <https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests>`__ により、クライアントの単一のTCPコネクションで処理するリクエストの数を指定します。デフォルト値の 1000 から指定の値に変更しています
 - `keepalive_timeout <https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout>`__ によりKeep-aliveを維持する秒数をしていします。差分で表示されている通り、初期設定の65秒から指定の値に変更しています
 
-この様に設定することで、Worker Process でのコネクションの処理を効率化し、Keep AliveによりTCPコネクションのオーバーヘッドを減らし効率的な通信を行います。
+この様に設定することで、Worker Process で大量のコネクションの処理を可能にし、Keep AliveによりTCPコネクションのオーバーヘッドを減らし効率的な通信を行います。
 
 これらの設定は `NGINX Plus Sizing Guide: How We Tested <https://www.nginx.com/blog/nginx-plus-sizing-guide-how-we-tested/>`__ のWebサーバの設定を参考にしておりますので、合わせてご確認ください。
 
@@ -254,15 +254,17 @@ Workers
   .. image:: ./media/locust-webui-workers2.png
      :width: 500
 
+先程のテストと比較し、各パラメータが増加していることが確認できます。各Worker Processで実行しているホスト数が増加しており、CPU利用率も増加しています。
+
 Statistics
 ~~~~
 
-統計情報を表形式で確認することが可能です。このパフォーマンステストでは ``Fails`` や ``Current PRS`` を中心にご確認ください
+統計情報を表形式で表示されます。
 
   .. image:: ./media/locust-webui-statistics2.png
      :width: 500
 
-また、画面右上に現在の状況が示されており、HOST、STATUS、WORKERS(動作するWoker Process)、RPS、FAILURES(失敗数)など確認することが可能です
+RPSの値が大きくなり、多量の通信を処理していることがわかります。 ``Fails`` を見ると増加は見られずエラーなく処理できていることがわかります
 
 Charts
 ~~~~
@@ -286,7 +288,7 @@ Failures
 
 GrafanaのDashboardを確認します。
 
-LocustのCPU利用率が Total 99.9% 程度でラボ環境での最大のトラフィックを発生させています
+LocustのCPU利用率が Total 99.9% 程度でラボ環境での最大のトラフィックを発生させています。
 対してNGINX PlusのCPU利用率が Total 31% 程度であることが確認できます。
 先程の約3倍のRPS・ユーザ数となりますが、CPU利用率が抑えられている事が確認できます。
 またその他結果からも確認しているように、トラフィック制御時にメモリが急増するなどの動作は見られません。
