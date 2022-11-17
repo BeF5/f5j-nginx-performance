@@ -15,16 +15,18 @@ F5 Labs - Index
 - `NGINX Plus <https://docs.nginx.com/nginx/>`__
 
   - NGINX が提供する高性能・エンタープライズグレードのWebアプリケーションサーバです
-  - 静的HTMLコンテンツ、 `PHP FPM(FastCGI Process Manager) <https://www.php.net/manual/ja/install.fpm.php>`__ を用いPHPを応答を返します
+  - このラボでは、静的HTMLコンテンツ、 `PHP FPM(FastCGI Process Manager) <https://www.php.net/manual/ja/install.fpm.php>`__ を用いPHPを応答を返します
 
 - `NGINX Unit <https://unit.nginx.org/>`__
 
   - NGINX が提供するオープンソースの動的アプリケーションサーバです
-  - 静的HTMLコンテンツ、PHPを用いた応答を返します
+  - 様々な言語を実行するモジュールを備えており、NGINX Unitが動作するホストで多くの言語を簡単に実行することが可能です
+  - このラボでは、静的HTMLコンテンツ、PHPを用いた応答を返します
 
 - `Apache Web Server <https://httpd.apache.org/>`__
 
   - クロスプラットフォームのオープンソースWebサーバです
+  - このラボでは、静的HTMLコンテンツ、PHPを用いた応答を返します
 
 - `Locust <https://locust.io/>`__
 
