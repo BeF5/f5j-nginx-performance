@@ -21,3 +21,5 @@ Ansible Playbookはこのラボで利用したGitHubレポジトリ上に管理�
 
 - https://github.com/BeF5/f5j-nginx-performance-lab
 
+Tips2. Locustに指定するパラメータ
+====
