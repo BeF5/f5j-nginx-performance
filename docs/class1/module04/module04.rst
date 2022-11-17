@@ -224,7 +224,7 @@ Worker Connectionに ``1024`` と指定されており、それらで処理で�
 
 これらの設定は `NGINX Plus Sizing Guide: How We Tested <https://www.nginx.com/blog/nginx-plus-sizing-guide-how-we-tested/>`__ のWebサーバの設定を参考にしておりますので、合わせてご確認ください。
 
-2. より多量なパフォーマンステストを実施
+3. より多量なパフォーマンステストを実施
 ====
 
 1. 多量のリクエストを送付
