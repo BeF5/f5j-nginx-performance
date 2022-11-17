@@ -87,7 +87,7 @@ Statistics
      :width: 500
 
 テストを完了すると STATUS が STOPPED となり、各種結果が表示されています。
-その結果を確認すると、現在の設定でテストを行った場合には、 ``Fails`` という欄の値が増加していることが確認できます
+その結果を確認すると、 ``Fails`` という欄の値が増加していることが確認できます
 
 Charts
 ~~~~
@@ -100,7 +100,7 @@ Charts
 Failures
 ~~~~
 
-エラーとなったリクエストの情報が表敬式で表示されます。
+エラーとなったリクエストの情報が表形式で表示されます。
 
   .. image:: ./media/locust-webui-failures.png
      :width: 500
@@ -262,7 +262,7 @@ Statistics
   .. image:: ./media/locust-webui-statistics2.png
      :width: 500
 
-また、画面右上に現在の状況が示されており、HOST、STATUIS、WORKERS(動作するWoker Process)、RPS、FAILURES(失敗数)など確認することが可能です
+また、画面右上に現在の状況が示されており、HOST、STATUS、WORKERS(動作するWoker Process)、RPS、FAILURES(失敗数)など確認することが可能です
 
 Charts
 ~~~~
