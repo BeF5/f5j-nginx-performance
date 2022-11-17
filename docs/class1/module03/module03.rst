@@ -47,7 +47,7 @@ Grafanaへの接続
   .. image:: ./media/grafana-open-dashboard.png
      :width: 500
 
-ダッシュボード上部に各項目で表示する内容を選択できます。以下の内容を参考に表示内容を変更してください。
+ダッシュボード上部の各項目で表示する内容を選択できます。以下の内容を参考に表示内容を変更してください。
 
   .. image:: ./media/grafana-dashboard.png
      :width: 500
@@ -60,8 +60,7 @@ Grafanaへの接続
 Locustへの接続・実行
 ----
 
-| Locustサーバ Webページ へ接続してください。
-| 踏み台ホストよりCLIで実行したレポートを確認するWebページを開いてください。URLは `http://10.1.1.7/ <http://10.1.1.7/>`__ です。
+踏み台ホストよりCLIで実行したレポートを確認するWebページを開いてください。URLは `http://10.1.1.7/ <http://10.1.1.7/>`__ です。
 
   .. image:: ../module02/media/locust-cliresult-top.png
      :width: 500
@@ -74,7 +73,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 以下がConfigファイルのサンプルです。その他詳細なパラメータは `Locust Configuration <https://docs.locust.io/en/stable/configuration.html>`__ を参照ください。
 
 .. code-block:: bash
-  :caption: Config ファイルサンプル(http_10-1-1-4_html.conf)
+  :caption: Config ファイルサンプル (http_10-1-1-4_html.conf)
   :linenos:
 
   headless = true
@@ -254,7 +253,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 .. NOTE::
   稀にNGINX UnitがPHPの応答を返さない状態になる場合があります。その際には、 ``ubuntu01`` に接続し、以下コマンドを実行してください。テスト実施時間の 120秒 経過を待ち、再度テストを行ってください
 
-  .. code-block::
+  .. code-block:: bash
 
     sudo service unit restart
 

@@ -270,7 +270,7 @@ Wordpress + MariaDB の基本的な構成は `NGINX Unitで記載した内容(Wo
 ====
 
 - Locust / Grafana + Prometheus / node-exporter はそれぞれ個別にインストールする方法もありますが、今回のラボではDocker Imageを実行しアプリケーションを利用しています
-- Locust は WebUI や、予め設定したシナリオをCLI(厳密にはDocker RUNで対象シナリオのファイルを指定)を用いて通信を実行します
+- Locust は WebUI や、予め設定したシナリオをCLI(厳密にはDocker Runで対象シナリオのファイルを指定)を用いて通信を実行します
 - それらの結果を、node-exporter で取得し、Prometheus にてメトリクスを取りまとめ、Grafana のダッシュボードで確認します
 
 
