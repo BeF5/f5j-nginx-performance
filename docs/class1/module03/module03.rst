@@ -302,7 +302,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 .. code-block:: cmdin
 
   # cd ~/f5j-nginx-performance-lab/ansible
-  ansible-playbook -i inventory/hosts -l locust load-generate/load-http-wp-allservers.yaml
+  ansible-playbook -i inventory/hosts -l locust load-generate/load-https-wp-allservers.yaml
 
 結果の確認
 ----
@@ -378,30 +378,3 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 - Apacheは Worker Process の fork によるメモリ増加、及びWorker Processを超えるクライアントからの接続があった場合に、C10K問題に見られるような限界が発生する可能性がある
 - 大規模環境ではクライアント通信を受け付けるLB/ADC/Proxyが必要であり、NGINXを利用しその実装をすることが可能。Webサーバやアプリケーションサーバはその後段で適切な負荷分散を受けて安定したシステム構築が必要
 
-
-その他テストから確認した結果
-----
-
-ラボ環境のApacheのデフォルト設定では、最大Worker Process数が ``150`` となっています。これは同時に処理可能なクライアント数を指定しています
-
-.. code-block:: bash
-  :caption: Apache 同時処理可能なクライアント設定 (mpm_worker.conf)
-  :linenos:
-
-  <IfModule mpm_worker_module>
-          StartServers             2
-          MinSpareThreads          25
-          MaxSpareThreads          75
-          ThreadLimit              64
-          ThreadsPerChild          25
-          MaxRequestWorkers        150
-          MaxConnectionsPerChild   0
-  </IfModule>
-
-このためパフォーマンステストのユーザ数がこの値を超える場合、以下のようなエラーを返します
-
-.. code-block:: bash
-  :caption: 同時接続数超過によるエラーログ (error.log)
-  :linenos:
-
-  [Wed Nov 16 07:29:52.251435 2022] [mpm_prefork:error] [pid 817] AH00161: server reached MaxRequestWorkers setting, consider raising the MaxRequestWorkers setting
