@@ -5,7 +5,7 @@
 ====
 
 -  事前にラボ環境へのInviteを行っておりますので、メールをご確認ください
--  利用するコマンド： git , sudo, curl, docker-compose, docker
+-  利用するコマンド： git , sudo, curl, docker-compose, docker, ansible-playbook
 -  NGINX Trialライセンスの取得、ラボ実施ユーザのHome Directoryへ配置
 
 ラボ環境 (UDF(Unified Demonstration Framework)) コンポーネントへの接続
