@@ -31,7 +31,7 @@ Locustへの接続・実行
 ----
 
 
-以下2つの手段でLocust WebUIをご確認いただけます
+以下2つの方法でLocust WebUIをご確認いただけます
 
 - 1. Locust Web UIの接続
 
