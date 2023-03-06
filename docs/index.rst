@@ -50,6 +50,15 @@ F5 Labs - Index
   - Hostの各種ステータスをメトリクスで取得、Prometheusで閲覧可能とする機能です
   - このラボではDocker Imageで実行することにより各種ホストのステータスを取得し、Prometheusにて管理します
 
+
+NGINX セットアップガイド トップページ
+====
+
+NGINX のその他ラボガイドは以下を参照してください
+
+- `NGINX セットアップガイド・ラボガイド <https://f5j-tech-info.readthedocs.io/ja/latest/content03/content3.html>`__
+
+
 .. toctree::
    :maxdepth: 3
    :caption: Lab Contents:
