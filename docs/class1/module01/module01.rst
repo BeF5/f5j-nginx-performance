@@ -90,8 +90,8 @@ SSHの接続
 Windows Jump Hostへログインいただくと、SSH Clientのショートカットがありますので、
 そちらをダブルクリックし ``ubuntu04`` へ接続ください
 
-   - .. image:: ./media/putty_icon.jpg
+   - .. image:: ./media/putty_icon.png
       :width: 50
 
-   - .. image:: ./media/putty_menu.jpg
+   - .. image:: ./media/putty_menu.png
       :width: 200
