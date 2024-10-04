@@ -35,7 +35,7 @@ Locustへの接続・実行
 
 - 1. Locust Web UIの接続
 
-踏み台ホストより、Locust WebUI へ接続してください。URLは `http://10.1.1.8/ <http://10.1.1.8/>`__ です。
+踏み台ホストより、Locust WebUI へ接続してください。URLは `http://10.1.1.7:8089/ <http://10.1.1.7:8089/>`__ です。
 
   .. image:: ../module02/media/locust-webui-top.png
      :width: 500
