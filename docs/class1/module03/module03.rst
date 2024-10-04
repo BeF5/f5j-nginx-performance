@@ -131,6 +131,7 @@ Locustで参照する config / senario のサンプルを以下に示します
 .. code-block:: cmdin
 
   # cd ~/f5j-nginx-performance-lab/ansible
+  # su ubuntu
   ansible-playbook -i inventory/hosts -l locust load-generate/load-http-html-allservers.yaml
 
 .. code-block:: bash
@@ -198,6 +199,7 @@ Locustサーバ Webページ を確認します
 .. code-block:: cmdin
 
   # cd ~/f5j-nginx-performance-lab/ansible
+  # su ubuntu
   ansible-playbook -i inventory/hosts -l locust load-generate/load-https-html-allservers.yaml
 
 
@@ -248,6 +250,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 .. code-block:: cmdin
 
   # cd ~/f5j-nginx-performance-lab/ansible
+  # su ubuntu
   ansible-playbook -i inventory/hosts -l locust load-generate/load-http-wp-allservers.yaml
 
 .. NOTE::
@@ -302,6 +305,7 @@ Locustサーバ Webページ を更新し結果が表示されることを確認
 .. code-block:: cmdin
 
   # cd ~/f5j-nginx-performance-lab/ansible
+  # su ubuntu
   ansible-playbook -i inventory/hosts -l locust load-generate/load-https-wp-allservers.yaml
 
 結果の確認
