@@ -130,9 +130,10 @@ Locustで参照する config / senario のサンプルを以下に示します
 
 .. code-block:: cmdin
 
-  # cd ~/f5j-nginx-performance-lab/ansible
-  # su ubuntu
+  su ubuntu
+  cd ~/f5j-nginx-performance-lab/ansible
   ansible-playbook -i inventory/hosts -l locust load-generate/load-http-html-allservers.yaml
+
 
 .. code-block:: bash
   :caption: 実行結果サンプル
